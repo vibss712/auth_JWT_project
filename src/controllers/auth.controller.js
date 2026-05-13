@@ -11,11 +11,12 @@ async function registerUser(req, res) {
     const token = jwt.sign({
         id : user._id,
     }, process.env.JWT_SECRET)                 //jwtsecrets.com->generate a jwtsecret key
-            
+     
+    res.cookie("token",token)                 //at client side/browser side we are gonna save cookie with the name token 
+
     res.status(201).json({
         message : "User registered successfully",
-        user,
-        token
+        user
     })
 } 
 
